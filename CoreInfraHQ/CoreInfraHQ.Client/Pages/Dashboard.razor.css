@@ -1,0 +1,10 @@
+﻿body {
+    font: 400 14px / 20px Roboto, sans-serif;
+    letter-spacing: .0178571429em;
+    background-color: #FFFFFF;
+}
+
+.bg-gray-200 {
+    background-color: #FFFFFF !important;
+}
+
