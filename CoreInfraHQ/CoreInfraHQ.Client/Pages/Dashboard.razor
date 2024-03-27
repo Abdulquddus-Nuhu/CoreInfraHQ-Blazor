@@ -23,8 +23,6 @@
     <!-- Nepcha Analytics (nepcha.com) -->
 </head>
 
-
-
 <body class="g-sidenav-show  bg-gray-200">
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
@@ -267,21 +265,27 @@
     </main>
 
 
-    <MudDataGrid T="Transaction" MultiSelection="false" Items="@Transactions" SortMode="SortMode.Multiple" Filterable="true"
-                 Hideable="true" RowClick="@RowClicked" RowContextMenuClick="RowRightClicked" SelectedItemsChanged="@SelectedItemsChanged">
+    <MudDataGrid Class="align-content-center" T="Transaction" Items="@Transactions" SortMode="SortMode.Multiple">
         <ToolBarContent>
-            <MudText Typo="Typo.h6">Transaction History</MudText>
+            <MudText Typo="Typo.h5">Transaction History</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="_searchString" Placeholder="Search Reference No." Adornment="Adornment.Start" Immediate="true"
                           AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <Columns>
-            <SelectColumn T="Transaction" />
-            <PropertyColumn Property="x => Transactions.IndexOf(x) + 1" Title="S/N" />
+            @* <PropertyColumn Property="x => Transactions.IndexOf(x) + 1" Title="S/N" /> *@
             <PropertyColumn Property="x => x.ReferenceNumber" Title="Reference Number" Sortable="false" Filterable="false" />
             <PropertyColumn Property="x => x.Amount" Title="Amount"/>
+
             <PropertyColumn Property="x => x.Type" Title="Type" />
             <PropertyColumn Property="x => x.Status" Title="Status" />
+            
+
+            <TemplateColumn StickyRight="true">
+                <CellTemplate>
+                    <MudButton Variant="Variant.Filled" Color="Color.Warning">Actions</MudButton>
+                </CellTemplate>
+            </TemplateColumn>
         </Columns>
         <PagerContent>
             <MudDataGridPager T="Transaction" />
@@ -296,23 +300,14 @@
 
 @code {
 
-    public class Element
-    {
-        public string ClientId { get; set; }
-        public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool RememberMe { get; set; }
-        public string Password { get; set; }
-    }
-
-    public record Transaction(string ReferenceNumber, decimal Amount, string Type, string Status);
+    public record Transaction(string ReferenceNumber, string Amount, string Type, string Status);
 
 
     private List<Transaction> Transactions = new List<Transaction>();
     private string _searchString;
     private bool _sortNameByLength;
     private List<string> _events = new();
-    // custom sort by name length
+
     private Func<Transaction, object> _sortBy => x =>
     {
         if (_sortNameByLength)

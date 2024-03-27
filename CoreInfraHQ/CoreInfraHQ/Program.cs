@@ -1,5 +1,6 @@
 using CoreInfraHQ.Client.Pages;
 using CoreInfraHQ.Components;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddControllers();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 

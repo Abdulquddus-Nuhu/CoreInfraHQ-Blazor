@@ -15,30 +15,6 @@ namespace CoreInfraHQ
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<TransactionsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<TransactionsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<TransactionsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<TransactionsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
 
         [HttpGet("GetTransactions")]
         public IEnumerable<Transaction> GetTransactions(int? numberOfRecords)
@@ -54,10 +30,10 @@ namespace CoreInfraHQ
             for (int i = 0; i < numberOfRecords; i++)
             {
                 var transaction = new Transaction(
-                    Guid.NewGuid().ToString().Substring(0, 8), // Shortened for readability
-                    (decimal)(random.NextDouble() * 10000), // Random amount between 0 and 10000
-                    random.Next(2) == 0 ? "Credit" : "Debit", // Randomly selects "Credit" or "Debit"
-                    random.Next(2) == 0 ? "Pending" : "Completed" // Randomly selects "Pending" or "Completed"
+                    Guid.NewGuid().ToString().Substring(0, 8), 
+                    $"NGN{((decimal)(random.NextDouble() * 800000)):N2}", 
+                    random.Next(2) == 0 ? "Income" : "Outcome", 
+                    random.Next(2) == 0 ? "Approved" : "Failed" 
                 );
 
                 sampleData.Add(transaction);
@@ -67,7 +43,7 @@ namespace CoreInfraHQ
         }
 
 
-        public record Transaction(string ReferenceNumber, decimal Amount, string Type, string Status);
+        public record Transaction(string ReferenceNumber, string Amount, string Type, string Status);
 
     }
 }
