@@ -319,7 +319,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Transactions = await httpClient.GetFromJsonAsync<List<Transaction>>("api/Transactions/GetTransactions?numberOfRecords=12");
+        Transactions = await httpClient.GetFromJsonAsync<List<Transaction>>("api/Transactions/GetTransactions");
+        // Transactions = await httpClient.GetFromJsonAsync<List<Transaction>>("api/Transactions/GetTransactions?numberOfRecords=12");
     }
 
     // events
