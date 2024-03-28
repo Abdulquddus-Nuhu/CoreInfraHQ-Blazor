@@ -4,6 +4,12 @@ using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (!(builder.Environment.IsDevelopment()))
+{
+    builder.WebHost.UseUrls("http://localhost:4005");
+}
+
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()

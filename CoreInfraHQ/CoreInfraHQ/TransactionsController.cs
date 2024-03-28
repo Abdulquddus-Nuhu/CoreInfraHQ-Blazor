@@ -22,12 +22,15 @@ namespace CoreInfraHQ
             return GenerateSampleData(numberOfRecords);
         }
 
-        public List<Transaction> GenerateSampleData(int? numberOfRecords = 20)
+        public List<Transaction> GenerateSampleData(int? numberOfRecords)
         {
             var random = new Random();
             var sampleData = new List<Transaction>();
 
-            for (int i = 0; i < numberOfRecords; i++)
+            int recordCount = numberOfRecords ?? 20;
+
+
+            for (int i = 0; i < recordCount; i++)
             {
                 var transaction = new Transaction(
                     Guid.NewGuid().ToString().Substring(0, 8), 
