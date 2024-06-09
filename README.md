@@ -59,7 +59,7 @@ Check out the live application [here](<http://159.65.31.191:4000/login>).
 
 2. **Copy the publish folder to your Linux server**:
     ```bash
-    scp -r ./bin/Release/net5.0/publish/ user@your-server:/var/www/CoreInfraHQ-Blazor
+    scp -r ./bin/Release/net8.0/publish/ user@your-server:/var/www/CoreInfraHQ-Blazor
     ```
 
 3. **Configure Nginx**:
