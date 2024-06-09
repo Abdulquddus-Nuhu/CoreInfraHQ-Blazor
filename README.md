@@ -10,7 +10,7 @@ CoreInfraHQ-Blazor is a Blazor application featuring user authentication and a d
 - **Hosting**: Deployed on a Linux server using Nginx.
 
 ## Live Demo
-
+Check out the live application [here](<http://159.65.31.191:4000/login>).
 Check out the live application [here]((http://159.65.31.191:4000/login)).
 
 ## Technology Stack
